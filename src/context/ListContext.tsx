@@ -1,21 +1,32 @@
-import React, { createContext, useState} from "react";
+import React, { createContext, useState, useEffect} from "react";
 import { listType } from "../App";
 
 
-const defaultValue = {
-    //recipeList: []
+type ContextType = {
+    recipeList: listType,
+    setRecipeList: React.Dispatch<React.SetStateAction<listType>>
 }
 
-export const ListContext = createContext(defaultValue)
+export const ListContext = createContext<ContextType[]>([] as ContextType)
 
-export default function ListProvider() {
-    const [recipeList, setRecipeList] = useState([])
+type ProviderProps = {
+    children: React.ReactNode
+}
+
+export default function ListProvider({children}:ProviderProps) {
+    const [recipeList, setRecipeList] = useState<listType[]>(JSON.parse(localStorage.getItem('list') || ''))
+
+    useEffect(() => {
+        localStorage.setItem('list', JSON.stringify(recipeList))
+         
+       }, [recipeList])
+
     return (
         <ListContext.Provider value={{
             recipeList,
             setRecipeList
         }}>
-
+            {children}
         </ListContext.Provider>
     )
 }
