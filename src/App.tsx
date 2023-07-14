@@ -1,26 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import { Routes, Route} from 'react-router-dom'
 import List from './components/List';
 import Create from './components/Create';
-import ListProvider from './context/ListContext';
 
-export type listType = {
-  ingredients: [],
-  directions: []
+
+export type ingredientsType = {
+    ingredient: string,
+    quantity: number
+}
+
+export type recipeType = {
+  recipeName: string,
+  ingredients: ingredientsType[],
+  directions: string[]
 }
 
 function App() {
+  const [recipeList, setRecipeList] = useState<recipeType[]>([])
+
+
   return (
     <div className="App">
-      <ListProvider>
         <NavBar />
         <Routes>
-          <Route path='/list' element={<List />} />
-          <Route path='/create' element={<Create />} />
+          <Route path='/list' element={<List recipeList={recipeList} />} />
+          <Route path='/create' element={<Create setRecipeList={setRecipeList} />} />
         </Routes>
-      </ListProvider>
     </div>
   );
 }

@@ -1,9 +1,20 @@
 import React from "react";
+import { recipeType } from "../App";
 
-export default function List() {
+type ListProps = {
+    recipeList: recipeType[]
+}
+
+export default function List({recipeList}:ListProps) {
+    const displayList = recipeList.map(r => {
+        return (
+            r.recipeName
+        )
+    })
     return (
         <div>
             <h1 className="center">List</h1>
+            {displayList}
         </div>
     )
 }
