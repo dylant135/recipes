@@ -19,27 +19,26 @@ export default function Create({setRecipeList}:CreateProps) {
 
     function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
         const {name, value } = e.target
-        switch(name) {
-            case 'recipeName':
-                setFormData(prevState => {
-                    return {
-                        ...prevState,
-                        [name]: value
-                    }
-                })
-                break;
-            case 'ingredients':
-                //const {datatype} = e.target
-                console.log([name[ingredientIndex]])
-                setFormData(prevState => {
-                    return {
-                        ...prevState,
-                        [name[ingredientIndex]]: value
-                    }
-                })
+
+        if(name.split('.')[0] === 'ingredients') {
+            const myArr = name.split('.')
+            setFormData(prevState => {
+                return {
+                    ...prevState,
+                    [myArr[0][ingredientIndex].myArr[1]] : value
+                }
+            })
         }
-        
+
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                [name]: value
+            }
+        })
+              
     }
+    console.log(formData)
 
     function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -72,15 +71,13 @@ export default function Create({setRecipeList}:CreateProps) {
                         type="text"
                         value={formData.ingredients[ingredientIndex].ingredient}
                         onChange={handleChange}
-                        name="ingredients"
-                        datatype="ingredient"
+                        name='ingredients.ingredient'
                     />
                     <input
                         type="number"
                         value={formData.ingredients[ingredientIndex].quantity}
                         onChange={handleChange}
-                        name="ingredients"
-                        datatype="quantity"
+                        name='ingredients.quantity'
                     />
                 </fieldset>
 
