@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { recipeType } from "../App";
+import Ingredient from "./Ingredient";
 
 type CreateProps = {
     setRecipeList: React.Dispatch<React.SetStateAction<recipeType[]>>
@@ -17,19 +18,6 @@ export default function Create({setRecipeList}:CreateProps) {
 
     const [ingredientIndex, setIngredientIndex] = useState(0)
 
-    function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
-        const {name, value } = e.target
-
-        setFormData(prevState => {
-            return {
-                ...prevState,
-                [name]: value
-            }
-        })
-              
-    }
-    console.log(formData)
-
     function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setRecipeList(prevState => {
@@ -43,6 +31,18 @@ export default function Create({setRecipeList}:CreateProps) {
             ingredients: [],
             directions: []
         })
+    }
+
+    function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
+        const {name, value } = e.target
+
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                [name]: value
+            }
+        })
+              
     }
 
     function handleIngredientChange(e: React.ChangeEvent<HTMLInputElement>, index: number) {
@@ -72,9 +72,25 @@ export default function Create({setRecipeList}:CreateProps) {
                 ingredients
             }
         })
-        setIngredientIndex(i => i + 1)
+        const i = formData.ingredients.length
+        setIngredientIndex(i)
         
     }
+
+    function editIngredient(index: number) {
+        setIngredientIndex(index)
+    }
+
+    const displayIngredients = formData.ingredients.map((ingredient, index) => {
+        return (
+            <Ingredient
+                ingredientName={ingredient.ingredient}
+                quantity={ingredient.quantity}
+                edit={editIngredient}
+                index={index}
+            />
+        )
+    })
 
     return (
         <div>
@@ -104,6 +120,7 @@ export default function Create({setRecipeList}:CreateProps) {
                         placeholder="Quantity"
                     />
                     <button type="button" onClick={moreIngredients}>Add another Ingredient</button>
+                    {displayIngredients}
                 </fieldset>
 
                  <button className="submit">Submit</button>

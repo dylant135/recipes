@@ -25,3 +25,17 @@ nav {
   padding: 5px;
   margin: 0px 7px;
 }
+
+.ingredient {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 25px;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+}
+
+.editbtn:hover {
+  background-color: crimson;
+  cursor: pointer;
+}
