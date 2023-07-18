@@ -20,16 +20,6 @@ export default function Create({setRecipeList}:CreateProps) {
     function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
         const {name, value } = e.target
 
-        if(name.split('.')[0] === 'ingredients') {
-            const myArr = name.split('.')
-            setFormData(prevState => {
-                return {
-                    ...prevState,
-                    [myArr[0][ingredientIndex].myArr[1]] : value
-                }
-            })
-        }
-
         setFormData(prevState => {
             return {
                 ...prevState,
@@ -55,6 +45,10 @@ export default function Create({setRecipeList}:CreateProps) {
         })
     }
 
+    function handleIngredientChange(e: React.ChangeEvent<HTMLInputElement>, index: number) {
+        const ingredient = [formData.ingredients[index]]
+    }
+
     return (
         <div>
             <h1 className="center">Create</h1>
@@ -70,14 +64,14 @@ export default function Create({setRecipeList}:CreateProps) {
                     <input
                         type="text"
                         value={formData.ingredients[ingredientIndex].ingredient}
-                        onChange={handleChange}
-                        name='ingredients.ingredient'
+                        onChange={(ingredientIndex) => handleIngredientChange}
+                        name='ingredient'
                     />
                     <input
                         type="number"
                         value={formData.ingredients[ingredientIndex].quantity}
-                        onChange={handleChange}
-                        name='ingredients.quantity'
+                        onChange={(ingredientIndex) => handleIngredientChange}
+                        name='quantity'
                     />
                 </fieldset>
 
