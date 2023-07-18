@@ -46,7 +46,34 @@ export default function Create({setRecipeList}:CreateProps) {
     }
 
     function handleIngredientChange(e: React.ChangeEvent<HTMLInputElement>, index: number) {
-        const ingredient = [formData.ingredients[index]]
+        const {name, value} = e.target
+        const ingredients: any[] = [...formData.ingredients]
+        ingredients[index] = {
+            ...ingredients[index],
+            [name]: value
+        }
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                ingredients
+            }
+        })
+    }
+
+    function moreIngredients() {
+        const ingredients = [...formData.ingredients]
+        ingredients[ingredientIndex + 1] = {
+            ingredient: '',
+            quantity: 0
+        }
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                ingredients
+            }
+        })
+        setIngredientIndex(i => i + 1)
+        
     }
 
     return (
@@ -58,21 +85,25 @@ export default function Create({setRecipeList}:CreateProps) {
                     value={formData.recipeName}
                     onChange={handleChange}
                     name='recipeName'
+                    placeholder="Recipe Name"
                  />
                 <fieldset>
                     <legend>Ingredient</legend>
                     <input
                         type="text"
                         value={formData.ingredients[ingredientIndex].ingredient}
-                        onChange={(ingredientIndex) => handleIngredientChange}
+                        onChange={(e) => handleIngredientChange(e, ingredientIndex)}
                         name='ingredient'
+                        placeholder="Ingredient Name"
                     />
                     <input
                         type="number"
                         value={formData.ingredients[ingredientIndex].quantity}
-                        onChange={(ingredientIndex) => handleIngredientChange}
+                        onChange={(e) => handleIngredientChange(e, ingredientIndex)}
                         name='quantity'
+                        placeholder="Quantity"
                     />
+                    <button type="button" onClick={moreIngredients}>Add another Ingredient</button>
                 </fieldset>
 
                  <button className="submit">Submit</button>
