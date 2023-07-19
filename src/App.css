@@ -26,6 +26,12 @@ nav {
   margin: 0px 7px;
 }
 
+form {
+  width: 500px;
+  margin: auto;
+  padding: 7px;
+}
+
 .ingredient {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -44,7 +50,22 @@ nav {
   padding: 5px;
 }
 
+.ingredientContainer {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .editbtn:hover {
   background-color: crimson;
   cursor: pointer;
+}
+
+.recipe {
+  background-color: gray;
+  border: 3px solid black;
+  width: 70vw;
+  margin: auto;
 }

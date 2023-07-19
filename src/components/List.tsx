@@ -1,5 +1,6 @@
 import React from "react";
 import { recipeType } from "../App";
+import Recipe from "./Recipe";
 
 type ListProps = {
     recipeList: recipeType[]
@@ -8,7 +9,10 @@ type ListProps = {
 export default function List({recipeList}:ListProps) {
     const displayList = recipeList.map(r => {
         return (
-            r.recipeName
+            <Recipe
+                recipeName={r.recipeName}
+                ingredients={r.ingredients}
+            />
         )
     })
     return (

@@ -11,7 +11,8 @@ export default function Create({setRecipeList}:CreateProps) {
         recipeName: '',
         ingredients: [{
             ingredient: '',
-            quantity: 0
+            quantity: 0,
+            units: ''
         }],
         directions: []
     })
@@ -28,9 +29,16 @@ export default function Create({setRecipeList}:CreateProps) {
         })
         setFormData({
             recipeName: '',
-            ingredients: [],
+            ingredients: [
+                {
+                    ingredient: '',
+                    quantity: 0,
+                    units: ''
+                }
+            ],
             directions: []
         })
+        setIngredientIndex(0)
     }
 
     function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
@@ -64,7 +72,8 @@ export default function Create({setRecipeList}:CreateProps) {
         const ingredients = [...formData.ingredients]
         ingredients[ingredientIndex + 1] = {
             ingredient: '',
-            quantity: 0
+            quantity: 0,
+            units: ''
         }
         setFormData(prevState => {
             return {
@@ -86,6 +95,7 @@ export default function Create({setRecipeList}:CreateProps) {
             <Ingredient
                 ingredientName={ingredient.ingredient}
                 quantity={ingredient.quantity}
+                units={ingredient.units}
                 edit={editIngredient}
                 index={index}
                 ingredientIndex={ingredientIndex}
@@ -106,21 +116,36 @@ export default function Create({setRecipeList}:CreateProps) {
                  />
                 <fieldset>
                     <legend>Ingredient</legend>
-                    <input
-                        type="text"
-                        value={formData.ingredients[ingredientIndex].ingredient}
-                        onChange={(e) => handleIngredientChange(e, ingredientIndex)}
-                        name='ingredient'
-                        placeholder="Ingredient Name"
-                    />
-                    <input
-                        type="number"
-                        value={formData.ingredients[ingredientIndex].quantity}
-                        onChange={(e) => handleIngredientChange(e, ingredientIndex)}
-                        name='quantity'
-                        placeholder="Quantity"
-                    />
-                    <button type="button" onClick={moreIngredients}>Add another Ingredient</button>
+                    <div className="ingredientContainer">
+                        <div>
+                            <label htmlFor='ingredient'>Ingredient Name: </label>
+                            <input
+                                type="text"
+                                value={formData.ingredients[ingredientIndex].ingredient}
+                                onChange={(e) => handleIngredientChange(e, ingredientIndex)}
+                                name='ingredient'
+                                placeholder="Ingredient Name"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='quantity'>Quantity: </label>
+                            <input
+                                type="number"
+                                value={formData.ingredients[ingredientIndex].quantity}
+                                onChange={(e) => handleIngredientChange(e, ingredientIndex)}
+                                name='quantity'
+                                placeholder="Quantity"
+                            />
+                            <input
+                                type="text"
+                                value={formData.ingredients[ingredientIndex].units}
+                                onChange={(e) => handleIngredientChange(e, ingredientIndex)}
+                                name='units'
+                                placeholder="Units"
+                            />
+                        </div>
+                        <button type="button" onClick={moreIngredients}>Add another Ingredient</button>
+                    </div>
 
                     <div className="ingredient">
                         <h5>Ingredient</h5>

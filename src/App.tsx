@@ -8,7 +8,8 @@ import Create from './components/Create';
 
 export type ingredientsType = {
     ingredient: string,
-    quantity: number
+    quantity: number,
+    units: string
 }
 
 export type recipeType = {
