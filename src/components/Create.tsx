@@ -88,6 +88,7 @@ export default function Create({setRecipeList}:CreateProps) {
                 quantity={ingredient.quantity}
                 edit={editIngredient}
                 index={index}
+                ingredientIndex={ingredientIndex}
             />
         )
     })
@@ -120,6 +121,12 @@ export default function Create({setRecipeList}:CreateProps) {
                         placeholder="Quantity"
                     />
                     <button type="button" onClick={moreIngredients}>Add another Ingredient</button>
+
+                    <div className="ingredient">
+                        <h5>Ingredient</h5>
+                        <h5>Quantity</h5>
+                        <h5>Edit</h5>
+                    </div>
                     {displayIngredients}
                 </fieldset>
 
