@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  background-color: #cad4e7;
+}
+
 .center {
   text-align: center;
 }
@@ -12,6 +16,7 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: crimson;
 }
 
 .navContainer {
@@ -30,7 +35,34 @@ form {
   width: 500px;
   margin: auto;
   padding: 7px;
+  border: 2px solid black;
+  background-color: #656f82;
+  color: white;
+  text-align: center;
 }
+
+input {
+  padding: 3px;
+  margin: 5px;
+  font-size: 1.2em;
+  border: 2px solid black;
+}
+
+
+
+.submit, .addMore {
+  font-size: 1.2em;
+  padding: 3px;
+  margin: 5px;
+  width: fit-content;
+  background-color: #a7d7ae;
+}
+
+.submit:hover, .addMore:hover {
+  background-color: #658269;
+  cursor: pointer;
+}
+
 
 .ingredient {
   display: grid;
@@ -51,7 +83,7 @@ form {
 }
 
 .ingredientContainer {
-  width: fit-content;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;

@@ -14,10 +14,12 @@ export default function Create({setRecipeList}:CreateProps) {
             quantity: 0,
             units: ''
         }],
-        directions: []
+        directions: [],
+        category: []
     })
 
     const [ingredientIndex, setIngredientIndex] = useState(0)
+    const [newCategory, setNewCategory] = useState(false)
 
     function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -36,7 +38,8 @@ export default function Create({setRecipeList}:CreateProps) {
                     units: ''
                 }
             ],
-            directions: []
+            directions: [],
+            category: []
         })
         setIngredientIndex(0)
     }
@@ -90,6 +93,10 @@ export default function Create({setRecipeList}:CreateProps) {
         setIngredientIndex(index)
     }
 
+    function addCategory() {
+        
+    }
+
     const displayIngredients = formData.ingredients.map((ingredient, index) => {
         return (
             <Ingredient
@@ -114,8 +121,29 @@ export default function Create({setRecipeList}:CreateProps) {
                     name='recipeName'
                     placeholder="Recipe Name"
                  />
+
+                 <div className="checkContainer">
+                    <label htmlFor="option1">Option 1</label>
+                    <input
+                        type="checkbox"
+                        name="option1"
+                    />
+
+                    {!newCategory && <button className="moreCategories" type="button" onClick={() => setNewCategory(true)}>Add Another Category</button>}
+                    {newCategory && <div>
+                        <input
+                            type="text"
+                            name='category'
+                            value={formData.category[formData.category.length - 1]}
+                            onChange={addCategory}
+                            placeholder="Category Name"
+                        />
+                        <button type="button" onClick={() => setNewCategory(false)}>Add Category</button>
+                        </div>}
+                 </div>
+                 
                 <fieldset>
-                    <legend>Ingredient</legend>
+                    <legend>Ingredients</legend>
                     <div className="ingredientContainer">
                         <div>
                             <label htmlFor='ingredient'>Ingredient Name: </label>
@@ -135,6 +163,7 @@ export default function Create({setRecipeList}:CreateProps) {
                                 onChange={(e) => handleIngredientChange(e, ingredientIndex)}
                                 name='quantity'
                                 placeholder="Quantity"
+                                style={{width: '50px'}}
                             />
                             <input
                                 type="text"
@@ -142,9 +171,12 @@ export default function Create({setRecipeList}:CreateProps) {
                                 onChange={(e) => handleIngredientChange(e, ingredientIndex)}
                                 name='units'
                                 placeholder="Units"
+                                style={{width: '75px'}}
                             />
                         </div>
-                        <button type="button" onClick={moreIngredients}>Add another Ingredient</button>
+                        <div style={{textAlign: 'center'}}>
+                            <button type="button" className="addMore" onClick={moreIngredients}>Add another Ingredient</button>
+                        </div>
                     </div>
 
                     <div className="ingredient">

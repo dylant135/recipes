@@ -15,7 +15,8 @@ export type ingredientsType = {
 export type recipeType = {
   recipeName: string,
   ingredients: ingredientsType[],
-  directions: string[]
+  directions: string[],
+  category: string[]
 }
 
 function App() {
