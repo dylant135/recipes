@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { recipeType } from "../App";
 import Ingredient from "./Ingredient";
+import Category from "./Category";
 
 type CreateProps = {
     setRecipeList: React.Dispatch<React.SetStateAction<recipeType[]>>
@@ -93,8 +94,28 @@ export default function Create({setRecipeList}:CreateProps) {
         setIngredientIndex(index)
     }
 
-    function addCategory() {
-        
+    function createCategory() {
+        setNewCategory(true)
+        const category = [...formData.category]
+        category[formData.category.length] = ''
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                category
+            }
+        })
+    }
+
+    function addCategory(e: React.ChangeEvent<HTMLInputElement>) {
+        const { value } = e.target
+        const categorys: any[] = [...formData.category]
+        categorys[formData.category.length - 1] = value
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                categorys
+            }
+        })
     }
 
     const displayIngredients = formData.ingredients.map((ingredient, index) => {
@@ -106,6 +127,14 @@ export default function Create({setRecipeList}:CreateProps) {
                 edit={editIngredient}
                 index={index}
                 ingredientIndex={ingredientIndex}
+            />
+        )
+    })
+
+    const displayCategories = formData.category.map(c => {
+        return (
+            <Category
+                name={c}
             />
         )
     })
@@ -128,8 +157,9 @@ export default function Create({setRecipeList}:CreateProps) {
                         type="checkbox"
                         name="option1"
                     />
+                    {displayCategories}
 
-                    {!newCategory && <button className="moreCategories" type="button" onClick={() => setNewCategory(true)}>Add Another Category</button>}
+                    {!newCategory && <button className="moreCategories" type="button" onClick={createCategory}>Add Another Category</button>}
                     {newCategory && <div>
                         <input
                             type="text"
