@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import { Routes, Route} from 'react-router-dom'
 import List from './components/List';
 import Create from './components/Create';
+import CategoryProvider from './context/CategoryContext';
 
 
 export type ingredientsType = {
@@ -26,10 +27,12 @@ function App() {
   return (
     <div className="App">
         <NavBar />
-        <Routes>
-          <Route path='/list' element={<List recipeList={recipeList} />} />
-          <Route path='/create' element={<Create setRecipeList={setRecipeList} />} />
-        </Routes>
+        <CategoryProvider>
+          <Routes>
+            <Route path='/list' element={<List recipeList={recipeList} />} />
+            <Route path='/create' element={<Create setRecipeList={setRecipeList} />} />
+          </Routes>
+        </CategoryProvider>
     </div>
   );
 }

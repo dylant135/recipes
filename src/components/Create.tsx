@@ -19,6 +19,8 @@ export default function Create({setRecipeList}:CreateProps) {
         category: []
     })
 
+    console.log(formData)
+
     const [ingredientIndex, setIngredientIndex] = useState(0)
     const [newCategory, setNewCategory] = useState(false)
 
@@ -108,12 +110,12 @@ export default function Create({setRecipeList}:CreateProps) {
 
     function addCategory(e: React.ChangeEvent<HTMLInputElement>) {
         const { value } = e.target
-        const categorys: any[] = [...formData.category]
-        categorys[formData.category.length - 1] = value
+        const category: any[] = [...formData.category]
+        category[formData.category.length - 1] = value
         setFormData(prevState => {
             return {
                 ...prevState,
-                categorys
+                category
             }
         })
     }

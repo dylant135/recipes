@@ -10,7 +10,6 @@ type IngredientProps = {
 }
 
 export default function Ingredient({ingredientName, quantity, units, index, ingredientIndex, edit}: IngredientProps) {
-    console.log(ingredientIndex)
     return (
         <div className={index === ingredientIndex ? 'activeIngredient' : 'ingredient'}>
             <h4>{ingredientName}</h4>
