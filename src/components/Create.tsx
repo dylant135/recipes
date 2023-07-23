@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { recipeType } from "../App";
 import Ingredient from "./Ingredient";
 import Category from "./Category";
+import { CategoryContext } from "../context/CategoryContext";
 
 type CreateProps = {
     setRecipeList: React.Dispatch<React.SetStateAction<recipeType[]>>
@@ -20,9 +21,12 @@ export default function Create({setRecipeList}:CreateProps) {
     })
 
     console.log(formData)
+    const {categories, setCategories} = useContext(CategoryContext)
+    const [categoryInput, setCategoryInput] = useState('')
+    const [newCategory, setNewCategory] = useState(false)
 
     const [ingredientIndex, setIngredientIndex] = useState(0)
-    const [newCategory, setNewCategory] = useState(false)
+    
 
     function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -108,8 +112,9 @@ export default function Create({setRecipeList}:CreateProps) {
         })
     }
 
-    function addCategory(e: React.ChangeEvent<HTMLInputElement>) {
+    function categoryChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { value } = e.target
+        /*
         const category: any[] = [...formData.category]
         category[formData.category.length - 1] = value
         setFormData(prevState => {
@@ -117,7 +122,19 @@ export default function Create({setRecipeList}:CreateProps) {
                 ...prevState,
                 category
             }
+        })*/
+        setCategoryInput(value)
+    }
+
+    function submitCategory() {
+        setNewCategory(false)
+        setCategories(prevState => {
+            return [
+                ...prevState,
+                categoryInput
+            ]
         })
+        setCategoryInput('')
     }
 
     const displayIngredients = formData.ingredients.map((ingredient, index) => {
@@ -133,7 +150,7 @@ export default function Create({setRecipeList}:CreateProps) {
         )
     })
 
-    const displayCategories = formData.category.map(c => {
+    const displayCategories = categories.map(c => {
         return (
             <Category
                 name={c}
@@ -166,11 +183,11 @@ export default function Create({setRecipeList}:CreateProps) {
                         <input
                             type="text"
                             name='category'
-                            value={formData.category[formData.category.length - 1]}
-                            onChange={addCategory}
+                            value={categoryInput}
+                            onChange={categoryChange}
                             placeholder="Category Name"
                         />
-                        <button type="button" onClick={() => setNewCategory(false)}>Add Category</button>
+                        <button type="button" onClick={submitCategory}>Add Category</button>
                         </div>}
                  </div>
                  

@@ -1,6 +1,16 @@
 import React, { createContext, useState } from "react";
 
-export const CategoryContext = createContext({})
+type contextType = {
+    categories: string[],
+    setCategories: React.Dispatch<React.SetStateAction<string[]>>
+}
+
+const init = {
+    categories: [],
+    setCategories: () => {}
+} as contextType
+
+export const CategoryContext = createContext(init)
 
 type providerProps = {
     children: React.ReactNode
