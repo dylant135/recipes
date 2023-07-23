@@ -12,6 +12,7 @@ export default function List({recipeList}:ListProps) {
             <Recipe
                 recipeName={r.recipeName}
                 ingredients={r.ingredients}
+                categories={r.category}
             />
         )
     })

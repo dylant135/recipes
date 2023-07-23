@@ -21,15 +21,30 @@ export default function Create({setRecipeList}:CreateProps) {
     })
 
     console.log(formData)
-    const {categories, setCategories} = useContext(CategoryContext)
+    //categories
+    const { categories, setCategories } = useContext(CategoryContext)
     const [categoryInput, setCategoryInput] = useState('')
     const [newCategory, setNewCategory] = useState(false)
+    const [isChecked, setIsChecked] = useState(categories.map(c => {
+        return {
+            name: c,
+            checked: false
+        }
+    }))
 
     const [ingredientIndex, setIngredientIndex] = useState(0)
     
 
     function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+        const filtered = isChecked.filter(item => item.checked)
+        console.log(filtered, 'hi')
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                category: filtered.map(item => item.name)
+            }
+        })
         setRecipeList(prevState => {
             return [
                 ...prevState,
@@ -154,6 +169,8 @@ export default function Create({setRecipeList}:CreateProps) {
         return (
             <Category
                 name={c}
+                isChecked={isChecked}
+                setIsChecked={setIsChecked}
             />
         )
     })

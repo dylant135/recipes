@@ -3,10 +3,12 @@ import { ingredientsType } from "../App";
 
 type RecipeProps = {
     recipeName: string,
-    ingredients: ingredientsType[]
+    ingredients: ingredientsType[],
+    categories: string[]
 }
 
-export default function Recipe({recipeName, ingredients}: RecipeProps) {
+export default function Recipe({recipeName, ingredients, categories}: RecipeProps) {
+
     const displayIngredients = ingredients.map(ingredient => {
         return (
             <div>
@@ -15,11 +17,20 @@ export default function Recipe({recipeName, ingredients}: RecipeProps) {
             </div>
         )
     })
+
+    const displayCategories = categories.map(c => {
+        return (
+            <h3>{c}</h3>
+        )
+    })
+    console.log(categories)
+
     return (
         <div className="recipe">
             <h2 className="center">{recipeName}</h2>
             <h3 className="center">Ingredients</h3>
             {displayIngredients}
+            {displayCategories}
         </div>
     )
 }
