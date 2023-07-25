@@ -23,7 +23,7 @@ export default function Recipe({recipeName, ingredients, categories}: RecipeProp
             <h3>{c}</h3>
         )
     })
-    console.log(categories)
+    console.log(categories, 'arg')
 
     return (
         <div className="recipe">

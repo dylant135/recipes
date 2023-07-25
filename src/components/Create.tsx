@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { recipeType } from "../App";
 import Ingredient from "./Ingredient";
 import Category from "./Category";
@@ -32,19 +32,37 @@ export default function Create({setRecipeList}:CreateProps) {
         }
     }))
 
+    //update isChecked when new category is added
+    useEffect(() => {
+        const categoryIndex = categories.length - 1
+        if(categoryIndex < 0) return
+        const c: any = [...categories]
+        setIsChecked(prevState => {
+            return [
+                ...prevState,
+                {
+                    name: c[categoryIndex],
+                    checked: false
+                }
+            ]
+        })
+    }, [categories])
+
     const [ingredientIndex, setIngredientIndex] = useState(0)
     
 
     function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const filtered = isChecked.filter(item => item.checked)
-        console.log(filtered, 'hi')
-        setFormData(prevState => {
-            return {
-                ...prevState,
-                category: filtered.map(item => item.name)
-            }
+        const c = filtered.map(category => {
+            console.log(category.name, 'sjifaoidjgio')
+            return category.name
         })
+        console.log(c, 'hi')
+        const data = formData
+        data.category = c
+        setFormData(data)
+        console.log(formData, 'correct data?')
         setRecipeList(prevState => {
             return [
                 ...prevState,
@@ -153,8 +171,15 @@ export default function Create({setRecipeList}:CreateProps) {
     }
 
     function handleCategoryClick(c:string) {
-        const found = isChecked.find(category => category.name === c)
-        console.log(found, 'hola')
+        //const theCategory = isChecked.find(category => category.name === c)
+        const index = isChecked.findIndex(category => category.name === c)
+        const arr = [...isChecked]
+        arr[index] = {
+            name: arr[index].name,
+            checked: !arr[index].checked
+        }
+        setIsChecked(arr)
+
         console.log(isChecked, 'hmm')
         
     }
@@ -194,11 +219,7 @@ export default function Create({setRecipeList}:CreateProps) {
                  />
 
                  <div className="checkContainer">
-                    <label htmlFor="option1">Option 1</label>
-                    <input
-                        type="checkbox"
-                        name="option1"
-                    />
+                    
                     {displayCategories}
 
                     {!newCategory && <button className="moreCategories" type="button" onClick={createCategory}>Add Another Category</button>}
