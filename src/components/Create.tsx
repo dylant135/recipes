@@ -152,6 +152,13 @@ export default function Create({setRecipeList}:CreateProps) {
         setCategoryInput('')
     }
 
+    function handleCategoryClick(c:string) {
+        const found = isChecked.find(category => category.name === c)
+        console.log(found, 'hola')
+        console.log(isChecked, 'hmm')
+        
+    }
+
     const displayIngredients = formData.ingredients.map((ingredient, index) => {
         return (
             <Ingredient
@@ -169,8 +176,7 @@ export default function Create({setRecipeList}:CreateProps) {
         return (
             <Category
                 name={c}
-                isChecked={isChecked}
-                setIsChecked={setIsChecked}
+                handleCategoryClick={() => handleCategoryClick(c)}
             />
         )
     })
