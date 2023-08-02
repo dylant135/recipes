@@ -18,7 +18,7 @@ export default function List({recipeList}:ListProps) {
     })
     return (
         <div>
-            <h1 className="center">List</h1>
+            <h1 className="center">Recipes List</h1>
             {displayList}
         </div>
     )

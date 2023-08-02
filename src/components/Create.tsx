@@ -208,7 +208,7 @@ export default function Create({setRecipeList}:CreateProps) {
 
     return (
         <div>
-            <h1 className="center">Create</h1>
+            <h1 className="center">Create Recipe</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -216,13 +216,15 @@ export default function Create({setRecipeList}:CreateProps) {
                     onChange={handleChange}
                     name='recipeName'
                     placeholder="Recipe Name"
+                    className="recipeNameInput"
                  />
 
                  <div className="checkContainer">
+                    <h3 className="center">Categories</h3>
                     
                     {displayCategories}
 
-                    {!newCategory && <button className="moreCategories" type="button" onClick={createCategory}>Add Another Category</button>}
+                    {!newCategory && <button className="moreCategories" type="button" onClick={createCategory}>Add Category</button>}
                     {newCategory && <div>
                         <input
                             type="text"
@@ -231,12 +233,12 @@ export default function Create({setRecipeList}:CreateProps) {
                             onChange={categoryChange}
                             placeholder="Category Name"
                         />
-                        <button type="button" onClick={submitCategory}>Add Category</button>
+                        <button className="moreCategories" type="button" onClick={submitCategory}>Add Category</button>
                         </div>}
                  </div>
                  
                 <fieldset>
-                    <legend>Ingredients</legend>
+                    <legend style={{fontSize: '1.5em'}}>Ingredients</legend>
                     <div className="ingredientContainer">
                         <div>
                             <label htmlFor='ingredient'>Ingredient Name: </label>
