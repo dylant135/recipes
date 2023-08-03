@@ -6,9 +6,9 @@ export default function NavBar() {
         <nav>
             <h1>Recipe DataBase</h1>
             <ul className="navContainer">
-                <NavLink to='list' ><li className="navItem">Recipe List</li></NavLink>
+                <NavLink to='list' className='navItem' ><li>Recipe List</li></NavLink>
             
-                <NavLink to='create'><li className="navItem">Create Recipe</li></NavLink>
+                <NavLink to='create' className='navItem'><li>Create Recipe</li></NavLink>
             </ul>
         </nav>
     )

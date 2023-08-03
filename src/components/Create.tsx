@@ -32,6 +32,8 @@ export default function Create({setRecipeList}:CreateProps) {
         }
     }))
 
+    const [steps, setSteps] = useState(1)
+
     //update isChecked when new category is added
     useEffect(() => {
         const categoryIndex = categories.length - 1
@@ -282,7 +284,17 @@ export default function Create({setRecipeList}:CreateProps) {
                     {displayIngredients}
                 </fieldset>
 
-                 <button className="submit">Submit</button>
+                <fieldset className="directionsContainer">
+                    <legend style={{fontSize: '1.5em'}}>Directions</legend>
+
+                    <h4 className="center">Step #{steps}</h4>
+
+                    <textarea></textarea>
+
+                    <button type="button" className="anotherStep">Another Step</button>
+                </fieldset>
+
+                 <button className="submit">Submit Recipe</button>
             </form>
         </div>
     )

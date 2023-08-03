@@ -5,6 +5,8 @@
 
 body {
   background-color: #cad4e7;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .center {
@@ -16,7 +18,8 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: crimson;
+  background-color: #c14049;
+  font-size: 1.35em;
 }
 
 .navContainer {
@@ -27,8 +30,15 @@ nav {
 
 .navItem {
   list-style: none;
+  text-decoration: none;
+  color: white;
+  background-color: #821119;
   padding: 5px;
-  margin: 0px 7px;
+  margin: 7px;
+}
+
+.navItem:hover {
+  background-color: #5d080f;
 }
 
 form {
@@ -50,7 +60,7 @@ input {
 
 
 
-.submit, .addMore, .moreCategories {
+.submit, .addMore, .moreCategories, .anotherStep {
   font-size: 1.2em;
   padding: 3px;
   margin: 5px;
@@ -58,12 +68,17 @@ input {
   background-color: #c14049;
 }
 
-.submit:hover, .addMore:hover, .moreCategories:hover {
+.submit:hover, .addMore:hover, .moreCategories:hover, .anotherStep:hover {
   background-color: #821119;
   color: white;
   cursor: pointer;
 }
 
+.directionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .ingredient {
   display: grid;
