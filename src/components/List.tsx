@@ -10,9 +10,7 @@ export default function List({recipeList}:ListProps) {
     const displayList = recipeList.map(r => {
         return (
             <Recipe
-                recipeName={r.recipeName}
-                ingredients={r.ingredients}
-                categories={r.category}
+                recipeData={r}
             />
         )
     })

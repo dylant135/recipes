@@ -60,7 +60,6 @@ export default function Create({setRecipeList}:CreateProps) {
             console.log(category.name, 'sjifaoidjgio')
             return category.name
         })
-        console.log(c, 'hi')
         const data = formData
         data.category = c
         setFormData(data)
@@ -96,6 +95,18 @@ export default function Create({setRecipeList}:CreateProps) {
             }
         })
               
+    }
+
+    function handleDirectionChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+        const {name, value} = e.target
+        const directions = [...formData.directions]
+        directions[steps - 1] = value
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                [name]: directions
+            }
+        })
     }
 
     function handleIngredientChange(e: React.ChangeEvent<HTMLInputElement>, index: number) {
@@ -180,10 +191,19 @@ export default function Create({setRecipeList}:CreateProps) {
             name: arr[index].name,
             checked: !arr[index].checked
         }
-        setIsChecked(arr)
+        setIsChecked(arr)        
+    }
 
-        console.log(isChecked, 'hmm')
-        
+    function addStep() {
+        const dir = [...formData.directions]
+        dir[steps] = ''
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                directions: dir
+            }
+        })
+        setSteps(prevState => prevState + 1)
     }
 
     const displayIngredients = formData.ingredients.map((ingredient, index) => {
@@ -219,6 +239,7 @@ export default function Create({setRecipeList}:CreateProps) {
                     name='recipeName'
                     placeholder="Recipe Name"
                     className="recipeNameInput"
+                    required
                  />
 
                  <div className="checkContainer">
@@ -250,6 +271,7 @@ export default function Create({setRecipeList}:CreateProps) {
                                 onChange={(e) => handleIngredientChange(e, ingredientIndex)}
                                 name='ingredient'
                                 placeholder="Ingredient Name"
+                                required
                             />
                         </div>
                         <div>
@@ -261,6 +283,7 @@ export default function Create({setRecipeList}:CreateProps) {
                                 name='quantity'
                                 placeholder="Quantity"
                                 style={{width: '50px'}}
+                                required
                             />
                             <input
                                 type="text"
@@ -269,6 +292,7 @@ export default function Create({setRecipeList}:CreateProps) {
                                 name='units'
                                 placeholder="Units"
                                 style={{width: '75px'}}
+                                required
                             />
                         </div>
                         <div style={{textAlign: 'center'}}>
@@ -289,9 +313,16 @@ export default function Create({setRecipeList}:CreateProps) {
 
                     <h4 className="center">Step #{steps}</h4>
 
-                    <textarea></textarea>
+                    <textarea 
+                        value={formData.directions[steps - 1]}
+                        name="directions"
+                        placeholder="direction..."
+                        onChange={handleDirectionChange}
+                    >
 
-                    <button type="button" className="anotherStep">Another Step</button>
+                    </textarea>
+
+                    <button type="button" className="anotherStep" onClick={addStep}>Another Step</button>
                 </fieldset>
 
                  <button className="submit">Submit Recipe</button>
