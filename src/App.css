@@ -115,6 +115,16 @@ input {
   background-color: #bebebe ;
   border: 3px solid black;
   border-radius: 5px;
-  width: 70vw;
-  margin: 7px auto 7px auto;
+  margin: 7px;
+  padding: 7px;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 2px solid black;
+  width: 85vw;
+  margin: auto;
 }
