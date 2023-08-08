@@ -29,7 +29,7 @@ function App() {
         <NavBar />
         <CategoryProvider>
           <Routes>
-            <Route path='/list' element={<List recipeList={recipeList} />} />
+            <Route path='/list/*' element={<List recipeList={recipeList} />} />
             <Route path='/create' element={<Create setRecipeList={setRecipeList} />} />
           </Routes>
         </CategoryProvider>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ingredientsType, recipeType } from "../App";
+import { recipeType } from "../App";
 
 type RecipeProps = {
     recipeData: recipeType,
@@ -7,8 +7,6 @@ type RecipeProps = {
 }
 
 export default function Recipe({recipeData, openRecipe}: RecipeProps) {
-    console.log(recipeData, 'rd')
-
     function upperCase() {
         const theWord = recipeData.recipeName
         const newWord = []

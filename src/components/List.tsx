@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { recipeType } from "../App";
 import Recipe from "./Recipe";
-import RecipeModal from "./RecipeModal";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import FullRecipe from "./FullRecipe";
 
 type ListProps = {
     recipeList: recipeType[]
@@ -9,11 +10,10 @@ type ListProps = {
 
 export default function List({recipeList}:ListProps) {
 
-    const [openModal, setOpenModal] = useState(false)
+    const navigate = useNavigate()
 
     function openRecipe(recipeData: recipeType) {
-        setOpenModal(true)
-        return recipeData
+        navigate('/list/fullRecipe', {state: recipeData})
     }
 
     const displayList = recipeList.map(r => {
@@ -27,7 +27,7 @@ export default function List({recipeList}:ListProps) {
     return (
         <div>
             <h1 className="center">Recipes List</h1>
-            {openModal && <RecipeModal setOpenModal={setOpenModal} recipeData={openModal()} />}
+            <Routes><Route path="/fullRecipe" element={<FullRecipe />}></Route></Routes>
             <div className="listContainer">
                 {displayList}
             </div>
