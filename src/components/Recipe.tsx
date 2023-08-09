@@ -10,7 +10,7 @@ export default function Recipe({recipeData, openRecipe}: RecipeProps) {
     function upperCase() {
         const theWord = recipeData.recipeName
         const newWord = []
-        for(let i = 0; i < theWord.length - 1; i++) {
+        for(let i = 0; i < theWord.length; i++) {
             if(i === 0) newWord.push(theWord[0].toUpperCase())
             else newWord.push(theWord[i])
         }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { recipeType } from "../App";
 import Recipe from "./Recipe";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -24,6 +24,7 @@ export default function List({recipeList}:ListProps) {
             />
         )
     })
+
     return (
         <div>
             <h1 className="center">Recipes List</h1>

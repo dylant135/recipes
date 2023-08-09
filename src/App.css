@@ -119,12 +119,49 @@ input {
   padding: 7px;
 }
 
+.recipe:hover {
+  background-color: #bf787f;
+  cursor: pointer;
+}
+
 .listContainer {
   display: flex;
   justify-content: left;
   align-items: center;
   flex-wrap: wrap;
-  border: 2px solid black;
   width: 85vw;
   margin: auto;
+}
+
+.fullRecipe {
+  background-color: #bebebe ;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 70vw;
+  height: 90vh;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.headerBar {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.closebtn {
+  background-color: crimson;
+  color: black;
+  padding: 3px;
+  margin: 5px 0;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.closebtn:hover {
+  background-color: #47060b;
+  color: white;
+  cursor: pointer;
 }
