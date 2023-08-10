@@ -5,6 +5,8 @@ type contextType = {
     setCategories: React.Dispatch<React.SetStateAction<string[]>>
 }
 
+//const initCategories:string[] = JSON.parse(localStorage.getItem('categories') || '')
+
 const init = {
     categories: [],
     setCategories: () => {}
@@ -16,7 +18,7 @@ type providerProps = {
     children: React.ReactNode
 }
 export default function CategoryProvider({children}: providerProps) {
-    const [categories, setCategories] = useState<string[]>([])
+    const [categories, setCategories] = useState<string[]>(JSON.parse(localStorage.getItem('categories') || '[]'))
     return (
         <CategoryContext.Provider value={{
             categories,

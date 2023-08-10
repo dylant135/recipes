@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import { Routes, Route} from 'react-router-dom'
@@ -21,7 +21,12 @@ export type recipeType = {
 }
 
 function App() {
-  const [recipeList, setRecipeList] = useState<recipeType[]>([])
+
+  const [recipeList, setRecipeList] = useState<recipeType[]>(JSON.parse(localStorage.getItem('recipeList') || '[]'))
+
+  useEffect(() => {
+    localStorage.setItem('recipeList', JSON.stringify(recipeList))
+  }, [recipeList])
 
 
   return (

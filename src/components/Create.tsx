@@ -50,6 +50,12 @@ export default function Create({setRecipeList}:CreateProps) {
         })
     }, [categories])
 
+    //update localStorage categories
+    useEffect(() => {
+        localStorage.setItem('categories', JSON.stringify(categories))
+        console.log('storage update')
+    }, [categories])
+
     const [ingredientIndex, setIngredientIndex] = useState(0)
     
 
