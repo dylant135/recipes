@@ -3,12 +3,10 @@ import { recipeType } from "../App";
 import Ingredient from "./Ingredient";
 import Category from "./Category";
 import { CategoryContext } from "../context/CategoryContext";
+import { recipeListContext } from "../context/RecipeListContext";
 
-type CreateProps = {
-    setRecipeList: React.Dispatch<React.SetStateAction<recipeType[]>>
-}
-
-export default function Create({setRecipeList}:CreateProps) {
+export default function Create() {
+    const { setRecipeList } = useContext(recipeListContext)
     const [formData, setFormData] = useState<recipeType>({
         recipeName: '',
         ingredients: [{

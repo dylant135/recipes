@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { recipeType } from "../App";
 import Recipe from "./Recipe";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import FullRecipe from "./FullRecipe";
+import { recipeListContext } from "../context/RecipeListContext";
 
-type ListProps = {
-    recipeList: recipeType[]
-}
+export default function List() {
 
-export default function List({recipeList}:ListProps) {
+    const { recipeList } = useContext(recipeListContext)
 
     const navigate = useNavigate()
 

@@ -13,6 +13,10 @@ body {
   text-align: center;
 }
 
+.top-margin {
+  margin-top: 8px;
+}
+
 nav {
   width: 100vw;
   display: flex;
@@ -151,16 +155,16 @@ input {
   text-align: center;
 }
 
-.closebtn {
+.closebtn, .deleteRecipebtn {
   background-color: crimson;
   color: black;
   padding: 3px;
-  margin: 5px 0;
+  margin: 15px 0;
   text-align: center;
   font-size: 1.2em;
 }
 
-.closebtn:hover {
+.closebtn:hover, .deleteRecipebtn:hover {
   background-color: #47060b;
   color: white;
   cursor: pointer;
@@ -169,7 +173,7 @@ input {
 .ingredientsContainer {
   width: fit-content;
   margin: auto;
-  text-align: center;
+  
 }
 
 .container {

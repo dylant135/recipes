@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ingredientsType } from "../App";
+import DeleteRecipe from "./DeleteRecipe";
 
 export default function FullRecipe() {
     const location = useLocation()
@@ -21,43 +22,45 @@ export default function FullRecipe() {
     }
 
     const displayIngredients = location.state.ingredients.map((x: ingredientsType) => {
-        return (
-            <ul className="ingredientsList">
-                <li className="center">{upperCase(x.ingredient)} {x.quantity}{x.units}</li>
-            </ul>
-        )
+        return  <li>{upperCase(x.ingredient)} {x.quantity}{x.units}</li>
     })
 
     const displayDirections = location.state.directions.map((step:string, index: number) => {
-        return (
-            <ul className="ingredientsList">
-                <li className="center"><strong>Step {index + 1}: </strong>{upperCase(step)}</li>
-            </ul>
-        )
+        return <li><strong>Step {index + 1}: </strong>{upperCase(step)}</li>
     })
 
     const displayCategories = location.state.category.map((c:string) => {
         return <p className="categoryCard">{upperCase(c)}</p>
     })
 
+    const r:string = location.state.recipeName
+
     return (
         <div className="fullRecipe">
             <div className="headerBar"><button type="button" onClick={goBack} className="closebtn">Close Recipe</button></div>
 
-            <h2 className="center" style={{fontSize: '2em', fontWeight: 'bold'}}>{upperCase(location.state.recipeName)}</h2>
+            <h2 className="center" style={{fontSize: '2.5em', fontWeight: 'bold'}}>{upperCase(location.state.recipeName)}</h2>
 
             <div className="categoriesContainer">{displayCategories}</div>
 
             <div className="container">
-                <h3 className="center">Ingredients</h3>
+                <h3 className="center top-margin">Ingredients</h3>
                 <hr style={{backgroundColor: 'black', margin: '7px 0'}}></hr>
-                <div className="ingredientsContainer">{displayIngredients}</div>
+                <ul className="ingredientsContainer">
+                    {displayIngredients}
+                </ul>
             </div>
 
             <div className="container">
-                <h3 className="center">Directions</h3>
+                <h3 className="center top-margin">Directions</h3>
                 <hr style={{backgroundColor: 'black', margin: '7px 0'}}></hr>
-                <div className="ingredientsContainer">{displayDirections}</div>
+                <ul className="ingredientsContainer">
+                    {displayDirections}
+                </ul>
+            </div>
+
+            <div className="container center">
+                <DeleteRecipe recipeName={r} />
             </div>
         </div>
     )
