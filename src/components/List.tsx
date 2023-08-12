@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ingredientsType, recipeType } from "../App";
+import { recipeType } from "../App";
 import Recipe from "./Recipe";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import FullRecipe from "./FullRecipe";
@@ -26,33 +26,26 @@ export default function List() {
         setSearchType(word)
     }
 
+    function close() {
+        setSearchFaze('start')
+        setSearch('')
+    }
+
     const filteredList = recipeList.filter(item => {
-        let theItem:string | string[] = ''
-        /*switch(searchType) {
-            case 'Name':
-                theItem = item.recipeName
-                return theItem.toLowerCase().includes(search.toLowerCase())
-            case 'Ingredient':
-                theItem = item.ingredients.map(x => x.ingredient)
-                const mapped = theItem.map(x => x.toLowerCase().includes(search.toLowerCase()))
-                return mapped
-            case 'Category':
-                break;
-            default:
-                break;
-        }*/
-        
+        let theItem:string | string[];
         if(searchType === 'Name') {
             theItem = item.recipeName
             return theItem.toLowerCase().includes(search.toLowerCase())
-        } else if(searchType === 'Ingredients') {
+        } else if(searchType === 'Ingredient') {
             theItem = item.ingredients.map(x => x.ingredient)
-            const mapped = theItem.map(x => x.toLowerCase().includes(search.toLowerCase()))
-            return mapped
+            const filtered = theItem.filter(x => x.toLowerCase().includes(search.toLowerCase()))
+            if(filtered.length > 0) return item
+            return false
         } else if(searchType === 'Category') {
             theItem = item.category
-            const mapped = theItem.map(x => x.toLowerCase().includes(search.toLowerCase()))
-            return mapped
+            const filtered = theItem.filter(x => x.toLowerCase().includes(search.toLowerCase()))
+            if(filtered.length > 0) return item
+            else return false
         } else {
             return {}
         }
@@ -89,7 +82,7 @@ export default function List() {
                     setSearch={setSearch}
                     ph={ph}
                 />
-                <button type="button" className="searchbtns" onClick={() => setSearchFaze('start')}>Close</button>
+                <button type="button" className="searchbtns" onClick={close}>Close</button>
             </div>}
 
             <Routes><Route path="/fullRecipe" element={<FullRecipe />}></Route></Routes>
