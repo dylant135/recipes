@@ -64,7 +64,7 @@ input {
 
 
 
-.submit, .addMore, .moreCategories, .anotherStep {
+.submit, .addMore, .moreCategories, .anotherStep, .searchbtns {
   font-size: 1.2em;
   padding: 3px;
   margin: 5px;
@@ -72,7 +72,7 @@ input {
   background-color: #c14049;
 }
 
-.submit:hover, .addMore:hover, .moreCategories:hover, .anotherStep:hover {
+.submit:hover, .addMore:hover, .moreCategories:hover, .anotherStep:hover, .searchbtns:hover {
   background-color: #821119;
   color: white;
   cursor: pointer;
@@ -147,6 +147,7 @@ input {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  overflow: auto;
 }
 
 .headerBar {
@@ -195,4 +196,13 @@ input {
 .categoryCard {
   color: crimson;
   padding: 5px 7px;
+}
+
+.searchByContainer {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
