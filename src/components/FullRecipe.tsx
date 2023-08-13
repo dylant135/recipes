@@ -22,11 +22,11 @@ export default function FullRecipe() {
     }
 
     const displayIngredients = location.state.ingredients.map((x: ingredientsType) => {
-        return  <li>{upperCase(x.ingredient)} {x.quantity}{x.units}</li>
+        return  <li className="ingredients">{upperCase(x.ingredient)} {x.quantity} {x.units}</li>
     })
 
     const displayDirections = location.state.directions.map((step:string, index: number) => {
-        return <li><strong>Step {index + 1}: </strong>{upperCase(step)}</li>
+        return <li className="directions"><strong>Step {index + 1}: </strong>{upperCase(step)}</li>
     })
 
     const displayCategories = location.state.category.map((c:string) => {
@@ -39,12 +39,12 @@ export default function FullRecipe() {
         <div className="fullRecipe">
             <div className="headerBar"><button type="button" onClick={goBack} className="closebtn">Close Recipe</button></div>
 
-            <h2 className="center" style={{fontSize: '2.5em', fontWeight: 'bold'}}>{upperCase(location.state.recipeName)}</h2>
+            <h2 className="title" style={{fontSize: '2.5em', fontWeight: 'bold'}}>{upperCase(location.state.recipeName)}</h2>
 
             <div className="categoriesContainer">{displayCategories}</div>
 
             <div className="container">
-                <h3 className="center top-margin">Ingredients</h3>
+                <h3 className="center top-margin largeText">Ingredients</h3>
                 <hr style={{backgroundColor: 'black', margin: '7px 0'}}></hr>
                 <ul className="ingredientsContainer">
                     {displayIngredients}
@@ -52,7 +52,7 @@ export default function FullRecipe() {
             </div>
 
             <div className="container">
-                <h3 className="center top-margin">Directions</h3>
+                <h3 className="center top-margin largeText">Directions</h3>
                 <hr style={{backgroundColor: 'black', margin: '7px 0'}}></hr>
                 <ul className="ingredientsContainer">
                     {displayDirections}
