@@ -86,7 +86,7 @@ input {
 .submit, .addMore, .moreCategories, .anotherStep, .searchbtns {
   font-size: 1.2em;
   padding: 3px;
-  margin: 5px;
+  margin: 8px;
   width: fit-content;
   background-color: #c14049;
 }
@@ -226,4 +226,15 @@ input {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.categoryContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.category {
+  padding: 12px;
 }

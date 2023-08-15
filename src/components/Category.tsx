@@ -8,7 +8,7 @@ type CategoryProps = {
 export default function Category({name, handleCategoryClick} : CategoryProps) {
 
     return (
-        <div>
+        <div className="category">
             <label htmlFor={name}>{name}</label>
             <input
                 type="checkbox"

@@ -4,7 +4,7 @@ import Recipe from "./Recipe";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import FullRecipe from "./FullRecipe";
 import { recipeListContext } from "../context/RecipeListContext";
-import SearchBar from "./filters/SearchBar";
+import SearchBar from "./SearchBar";
 
 export default function List() {
 

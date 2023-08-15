@@ -55,6 +55,15 @@ export default function Create() {
     }, [categories])
 
     const [ingredientIndex, setIngredientIndex] = useState(0)
+
+    function upperCase(word:string) {
+        let newWord = []
+        for(let i = 0; i < word.length; i++) {
+            if(i === 0) newWord.push(word[0].toUpperCase())
+            else newWord.push(word[i])
+        }
+        return newWord.join('')
+    }
     
 
     function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
@@ -226,7 +235,7 @@ export default function Create() {
     const displayCategories = categories.map(c => {
         return (
             <Category
-                name={c}
+                name={upperCase(c)}
                 handleCategoryClick={() => handleCategoryClick(c)}
             />
         )
@@ -249,7 +258,9 @@ export default function Create() {
                  <div className="checkContainer">
                     <h3 className="center">Categories</h3>
                     
-                    {displayCategories}
+                    <div className="categoryContainer">
+                        {displayCategories}
+                    </div>
 
                     {!newCategory && <button className="moreCategories" type="button" onClick={createCategory}>Add Category</button>}
                     {newCategory && <div>
@@ -322,6 +333,8 @@ export default function Create() {
                         name="directions"
                         placeholder="direction..."
                         onChange={handleDirectionChange}
+                        cols={30}
+                        rows={8}
                     >
 
                     </textarea>
